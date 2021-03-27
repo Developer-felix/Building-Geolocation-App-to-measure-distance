@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %}
 Calculate Distance
 {% endblock title %}
@@ -7,7 +8,7 @@ Calculate Distance
   <hr>
   <form action="" method="POST" autocomplete="off">
       {% csrf_token %}
-      {{form.as_p}}
+      {{form|crispy}}
       <button type="submit" class="btn btn-primary">Confirm</button>
   </form>
 {% endblock content %}

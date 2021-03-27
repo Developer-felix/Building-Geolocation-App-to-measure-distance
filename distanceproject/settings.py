@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'measurements',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
