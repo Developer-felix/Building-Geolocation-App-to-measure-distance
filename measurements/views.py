@@ -45,7 +45,7 @@ def calculate_distance_view(request):
         #location maker
         folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'] ,icon=folium.Icon(color='purple')).add_to(m)
         #destination maker
-        folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'] ,icon=folium.Icon(color='purple')).add_to(m)
+        folium.Marker([d_lat , d_lon],tooltip="Click Here For More",popup=destination ,icon=folium.Icon(color='red',icon='cloud')).add_to(m)
 
 
 
