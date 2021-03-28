@@ -12,33 +12,30 @@ def calculate_distance_view(request):
 
     ip = "72.14.207.99"
     country, city, lat, lon = get_geo(ip)
-    # print("location country", country)
-    # print("location city", city)
-    # print("location lat", lat)
-    # print("location lon", lon)
     
     location = geolocator.geocode(city)
-    # print('###', location)
     
     l_lat = lat
     l_lon = lon
-
     pointA = (l_lat, l_lon)
     
+    #initial folium map
 
     if form.is_valid():
         instance = form.save(commit=False)
         destination_ = form.cleaned_data.get('destination')
         destination = geolocator.geocode(destination_)
-        # print(destination)
+        
+        #destination cordinate
         d_lat = destination.latitude
         d_lon = destination.longitude
 
-        pointB = (d_lat , d_lon)
+        pointB = (d_lat, d_lon)
         
+        #distance calculations
         distance = round(geodesic(pointA , pointB).km , 2)
 
-
+        #folium map modification
 
         instance.location = location
         instance.distance = distance
