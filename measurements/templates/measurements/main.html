@@ -4,8 +4,8 @@
 Calculate Distance
 {% endblock title %}
 {% block content %}
-  {{distance}}
-  <hr>
+  {{map|safe}}
+ 
   <form action="" method="POST" autocomplete="off">
       {% csrf_token %}
       {{form|crispy}}

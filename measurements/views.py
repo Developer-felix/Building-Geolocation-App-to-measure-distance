@@ -4,6 +4,8 @@ from .forms import MeasurementModelForm
 from geopy.geocoders import Photon
 from geopy.distance import geodesic
 from .utils import get_geo
+import folium
+
 # Nominatim
 def calculate_distance_view(request):
     obj = get_object_or_404(Measurement, id=1)
@@ -20,6 +22,7 @@ def calculate_distance_view(request):
     pointA = (l_lat, l_lon)
     
     #initial folium map
+    m = folium.Map(width=750, height=500, location=pointA)
 
     if form.is_valid():
         instance = form.save(commit=False)
@@ -40,8 +43,10 @@ def calculate_distance_view(request):
         instance.location = location
         instance.distance = distance
         instance.save()
+    m = m._repr_html_()
     context = {
         'distance': obj,
-        'form' : form,
+        'form': form,
+        'map' : m,
     }
     return render(request,'measurements/main.html',context)
