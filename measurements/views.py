@@ -23,6 +23,8 @@ def calculate_distance_view(request):
     
     #initial folium map
     m = folium.Map(width=750, height=500, location=pointA)
+    #location maker
+    folium.Marker([l_lat , l_lon])
 
     if form.is_valid():
         instance = form.save(commit=False)
