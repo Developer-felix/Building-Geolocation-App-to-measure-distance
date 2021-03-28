@@ -10,6 +10,4 @@ https://www.maxmind.com/en/geolite2/thank-you
 
 https://pypi.org/project/geopy/
 
-# Youtube resource
 
-https://www.youtube.com/watch?v=MOKEB3EjP3Y
