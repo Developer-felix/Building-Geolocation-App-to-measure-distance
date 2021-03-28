@@ -24,7 +24,7 @@ def calculate_distance_view(request):
     #initial folium map
     m = folium.Map(width=750, height=500, location=pointA)
     #location maker
-    folium.Marker([l_lat , l_lon])
+    folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'] ,icon=folium.Icon(color='purple')).add_to(m)
 
     if form.is_valid():
         instance = form.save(commit=False)
@@ -41,6 +41,13 @@ def calculate_distance_view(request):
         distance = round(geodesic(pointA , pointB).km , 2)
 
         #folium map modification
+        m = folium.Map(width=750, height=500, location=pointA)
+        #location maker
+        folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'] ,icon=folium.Icon(color='purple')).add_to(m)
+        #destination maker
+        folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'] ,icon=folium.Icon(color='purple')).add_to(m)
+
+
 
         instance.location = location
         instance.distance = distance
