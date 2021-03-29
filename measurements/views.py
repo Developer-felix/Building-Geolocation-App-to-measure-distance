@@ -3,7 +3,7 @@ from .models import Measurement
 from .forms import MeasurementModelForm
 from geopy.geocoders import Photon
 from geopy.distance import geodesic
-from .utils import get_geo, get_center_coodinates
+from .utils import get_geo, get_center_coodinates,get_zoom
 import folium
 
 # Nominatim
@@ -22,7 +22,7 @@ def calculate_distance_view(request):
     pointA = (l_lat, l_lon)
     
     #initial folium map
-    m = folium.Map(width=750, height=500, location=get_center_coodinates(l_lat, l_lon))
+    m = folium.Map(width=750, height=500, location=get_center_coodinates(l_lat, l_lon),zoom_start=8)
     #location maker
     folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'] ,icon=folium.Icon(color='purple')).add_to(m)
 
@@ -41,13 +41,13 @@ def calculate_distance_view(request):
         distance = round(geodesic(pointA , pointB).km , 2)
 
         #folium map modification
-        m = folium.Map(width=750, height=500, location=get_center_coodinates(l_lat, l_lon, d_lat, d_lon))
+        m = folium.Map(width=750, height=500, location=get_center_coodinates(l_lat, l_lon, d_lat, d_lon), zoom_start=get_zoom(distance))
         #location maker
         folium.Marker([l_lat , l_lon],tooltip="Click Here For More",popup=city['city'], icon=folium.Icon(color='purple')).add_to(m)
         #destination maker
         folium.Marker([d_lat , d_lon],tooltip="Click Here For More",popup=destination ,icon=folium.Icon(color='red',icon='cloud')).add_to(m)
 
-
+        #Draw the line between location and destination
 
         instance.location = location
         instance.distance = distance
