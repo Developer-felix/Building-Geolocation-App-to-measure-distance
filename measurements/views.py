@@ -8,6 +8,9 @@ import folium
 
 # Nominatim
 def calculate_distance_view(request):
+    #initial distance
+    distance = None
+    destination = None
     obj = get_object_or_404(Measurement, id=1)
     form = MeasurementModelForm(request.POST or None)
     geolocator = Photon(user_agent="measurements")
@@ -56,7 +59,8 @@ def calculate_distance_view(request):
         instance.save()
     m = m._repr_html_()
     context = {
-        'distance': obj,
+        'distance': distance,
+        'destination':destination,
         'form': form,
         'map' : m,
     }
