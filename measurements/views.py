@@ -48,6 +48,8 @@ def calculate_distance_view(request):
         folium.Marker([d_lat , d_lon],tooltip="Click Here For More",popup=destination ,icon=folium.Icon(color='red',icon='cloud')).add_to(m)
 
         #Draw the line between location and destination
+        line = folium.PolyLine(locations=[pointA, pointB], weight=2, color='blue')
+        m.add_child(line)
 
         instance.location = location
         instance.distance = distance
